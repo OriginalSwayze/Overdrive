@@ -1,0 +1,88 @@
+/* OVERDRIVE — buttons, inputs, toggles, dialogs, settings in the HUD language */
+html .DialogButton {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer-sm);
+    background: var(--od-2-10) !important;
+    color: var(--od-2) !important;
+    box-shadow: inset 0 0 0 1px var(--od-2-40) !important;
+    font-family: var(--mr-font-display) !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+}
+html .DialogButton:not(.Disabled):not(:disabled):hover {
+    background: var(--od-2) !important;
+    color: var(--od-ink) !important;
+    transform: none !important;
+    animation: od-glitch-text 260ms steps(2) 1;
+}
+html .DialogButton.Primary,
+html button.DialogButton.Primary {
+    background: var(--od-1) !important;
+    color: var(--od-ink) !important;
+    box-shadow: none !important;
+}
+html .DialogButton.Primary:not(.Disabled):hover { background: var(--od-2) !important; }
+
+html :is(.DialogInput, .DialogTextInputBase, input.TextInput, textarea.DialogTextInputBase),
+html .DialogDropDown {
+    border-radius: 0 !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid var(--mr-line-2) !important;
+    font-family: var(--mr-font-mono) !important;
+}
+html :is(.DialogInput, .DialogTextInputBase):focus {
+    border-color: var(--od-2) !important;
+    box-shadow: inset 0 0 12px var(--od-2-20) !important;
+}
+html .ToggleRail { border-radius: 0 !important; background: rgba(255, 255, 255, 0.08) !important; }
+html .Toggle.On .ToggleRail, html .Toggle[class*="On"] .ToggleRail { background: var(--od-1) !important; box-shadow: var(--od-neon-1) !important; }
+html .ToggleSwitch { border-radius: 0 !important; background: var(--mr-fg) !important; }
+html .DialogCheckbox { border-radius: 0 !important; }
+html .DialogCheckbox.Active, html .DialogCheckbox:has(svg) { background: var(--od-1) !important; }
+html .SliderHandle { border-radius: 0 !important; background: var(--od-1) !important; box-shadow: var(--od-neon-1) !important; }
+html .SliderTrack { border-radius: 0 !important; }
+
+html .GenericConfirmDialog,
+html .ModalPosition_Content > .DialogContent {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer);
+    background:
+        linear-gradient(var(--od-1), var(--od-1)) 0 0 / 100% 2px no-repeat,
+        var(--od-panel) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+}
+html .DialogHeader {
+    font-family: var(--mr-font-display) !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+    color: var(--od-1) !important;
+}
+html .DialogHeader::before { content: "// "; color: var(--mr-fg-4); }
+
+html .PagedSettingsDialog_PageListColumn .PagedSettingsDialog_Title {
+    background: none !important;
+    color: var(--od-1) !important;
+    -webkit-text-fill-color: var(--od-1);
+    letter-spacing: 0.24em !important;
+    text-transform: uppercase !important;
+    text-shadow: var(--od-text-neon);
+}
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem {
+    border-radius: 0 !important;
+    font-family: var(--mr-font-display);
+    letter-spacing: 0.08em;
+}
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem:not(.Active):hover {
+    background: var(--od-2-10) !important;
+    color: var(--od-2) !important;
+}
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem.Active {
+    background: var(--od-1) !important;
+    color: var(--od-ink) !important;
+    box-shadow: none !important;
+    clip-path: var(--od-chamfer-r);
+}
+html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem.Active::before { display: none; }
+html .PagedSettingsDialog .SettingsDialogSubHeader { color: var(--od-2) !important; font-family: var(--mr-font-mono); }
+html .PagedSettingsDialog :is(.Field, .FakeContainer, .InfoRow) { border-radius: 0 !important; }
+html .PagedSettingsDialog .Field:hover { background: var(--od-2-10) !important; }

@@ -1,0 +1,9 @@
+/* OVERDRIVE signal: Netwave — cyan, magenta, violet */
+:root {
+    --od-p-1: #00F6FF;
+    --od-p-2: #FF2BD6;
+    --od-p-3: #8A5CFF;
+    --od-p-bg: #05060D;
+    --od-p-panel: #0B0C18;
+    --od-p-ink: #05060D;
+}

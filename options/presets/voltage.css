@@ -1,0 +1,9 @@
+/* OVERDRIVE signal: Voltage — yellow, cyan, red */
+:root {
+    --od-p-1: #FCEE0A;
+    --od-p-2: #00F0FF;
+    --od-p-3: #FF003C;
+    --od-p-bg: #07070B;
+    --od-p-panel: #0D0D14;
+    --od-p-ink: #07070B;
+}

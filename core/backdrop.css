@@ -1,0 +1,79 @@
+/* ==========================================================================
+   OVERDRIVE — the city behind the glass.
+     html::before — neon haze: red, cyan and yellow light over near-black
+     html::after  — a perspective grid floor running toward the viewer
+     body::before — CRT scanlines + vignette, over the UI
+     body::after  — a slow scan beam sweeping down the window
+   ========================================================================== */
+
+html { background: var(--mr-base) !important; }
+body { background: transparent !important; }
+
+html::before,
+html::after,
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    pointer-events: none;
+    z-index: -1;
+}
+
+html::before {
+    inset: 0;
+    background:
+        radial-gradient(60% 40% at 82% 0%, color-mix(in srgb, var(--od-3) 22%, transparent), transparent 70%),
+        radial-gradient(50% 35% at 8% 8%, color-mix(in srgb, var(--od-2) 14%, transparent), transparent 70%),
+        radial-gradient(90% 30% at 50% 66%, color-mix(in srgb, var(--od-1) 8%, transparent), transparent 70%),
+        linear-gradient(180deg, var(--od-bg) 0%, color-mix(in srgb, var(--od-bg) 88%, var(--od-3)) 100%);
+    animation: od-flicker 11s linear infinite;
+    animation-play-state: var(--mr-ambient);
+}
+
+/* Grid floor: two line sets on a plane tilted in 3D */
+html::after {
+    left: -50%;
+    right: -50%;
+    top: 60%;
+    height: 90%;
+    background-image:
+        linear-gradient(0deg, color-mix(in srgb, var(--od-2) 40%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--od-2) 26%, transparent) 1px, transparent 1px);
+    background-size: 100% 60px, 60px 100%;
+    transform: perspective(380px) rotateX(62deg);
+    transform-origin: 50% 0;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 25%, #000 60%, transparent 100%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 25%, #000 60%, transparent 100%);
+    opacity: var(--od-grid-opacity, 0.55);
+    animation: od-grid-run 2.4s linear infinite;
+    animation-play-state: var(--mr-ambient);
+}
+
+body::before {
+    inset: 0;
+    background:
+        var(--od-scanlines, repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0px, rgba(0, 0, 0, 0.3) 1px, transparent 1px, transparent 3px)),
+        radial-gradient(130% 100% at 50% 40%, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 9998;          /* scanlines sit over the UI, like a CRT */
+    opacity: var(--od-scanline-opacity, 0.5);
+}
+
+body::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 140px;
+    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--od-2) 5%, transparent) 70%, color-mix(in srgb, var(--od-2) 10%, transparent) 100%);
+    z-index: 9999;
+    animation: od-scan 8s linear infinite;
+    animation-play-state: var(--mr-ambient);
+    opacity: var(--od-beam-opacity, 0.7);
+}
+
+.Wrapper.ForceOpaqueBackground,
+.FocusNavigationRoot,
+.Root,
+.OuterFrame,
+.ContentFrame {
+    background: transparent !important;
+}

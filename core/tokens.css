@@ -1,0 +1,107 @@
+/* ==========================================================================
+   OVERDRIVE — design tokens.
+   The shared component files read a shared set of --mr-* variables;
+   Overdrive redefines them into a hard-edged neon HUD language.
+   Presets (options/presets/*.css) set --od-p-*.
+   ========================================================================== */
+
+:root {
+    /* ---- Signal colors ------------------------------------------------- */
+    --od-1: var(--od-p-1, #FCEE0A);      /* primary: voltage yellow   */
+    --od-2: var(--od-p-2, #00F0FF);      /* secondary: data cyan      */
+    --od-3: var(--od-p-3, #FF003C);      /* alert: hot red            */
+    --od-bg: var(--od-p-bg, #07070B);
+    --od-panel: var(--od-p-panel, #0D0D14);
+    --od-ink: var(--od-p-ink, #07070B);  /* text on primary fills     */
+
+    --od-1-10: color-mix(in srgb, var(--od-1) 10%, transparent);
+    --od-1-20: color-mix(in srgb, var(--od-1) 20%, transparent);
+    --od-1-40: color-mix(in srgb, var(--od-1) 40%, transparent);
+    --od-1-60: color-mix(in srgb, var(--od-1) 60%, transparent);
+    --od-2-10: color-mix(in srgb, var(--od-2) 10%, transparent);
+    --od-2-20: color-mix(in srgb, var(--od-2) 20%, transparent);
+    --od-2-40: color-mix(in srgb, var(--od-2) 40%, transparent);
+    --od-3-20: color-mix(in srgb, var(--od-3) 20%, transparent);
+    --od-3-40: color-mix(in srgb, var(--od-3) 40%, transparent);
+
+    --od-neon-1: 0 0 6px var(--od-1-60), 0 0 18px var(--od-1-20);
+    --od-neon-2: 0 0 6px var(--od-2-40), 0 0 18px var(--od-2-20);
+    --od-text-neon: 0 0 8px var(--od-1-60);
+
+    /* Chamfer size for cut corners (Look → Corner cut) */
+    --od-cut: var(--mr-setting-radius, 14px);
+    --od-cut-sm: calc(var(--od-cut) * 0.55);
+    --od-chamfer: polygon(var(--od-cut) 0, 100% 0, 100% calc(100% - var(--od-cut)), calc(100% - var(--od-cut)) 100%, 0 100%, 0 var(--od-cut));
+    --od-chamfer-sm: polygon(var(--od-cut-sm) 0, 100% 0, 100% calc(100% - var(--od-cut-sm)), calc(100% - var(--od-cut-sm)) 100%, 0 100%, 0 var(--od-cut-sm));
+    --od-chamfer-r: polygon(0 0, calc(100% - var(--od-cut-sm)) 0, 100% var(--od-cut-sm), 100% 100%, 0 100%);
+    --od-slant: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+
+    /* ---- Mapping onto the shared --mr-* language ----------------------- */
+    --mr-a: var(--od-1);
+    --mr-b: var(--od-2);
+    --mr-c: var(--od-3);
+    --mr-base: var(--od-bg);
+    --mr-on-accent: var(--od-ink);
+    --mr-accent: var(--od-1);
+    --mr-grad: linear-gradient(90deg, var(--od-1), var(--od-1));
+    --mr-grad-loop: linear-gradient(90deg, var(--od-1), var(--od-2), var(--od-3), var(--od-2), var(--od-1));
+    --mr-grad-soft: linear-gradient(90deg, var(--od-1-20), transparent 85%);
+    --mr-accent-08: var(--od-1-10);
+    --mr-accent-14: var(--od-1-10);
+    --mr-accent-24: var(--od-1-20);
+    --mr-accent-40: var(--od-1-40);
+    --mr-accent-text: var(--od-1);
+
+    --mr-fg: #E8E6D9;
+    --mr-fg-2: #A8A79A;
+    --mr-fg-3: #6F6E66;
+    --mr-fg-4: #45443F;
+    --mr-line: color-mix(in srgb, var(--od-2) 14%, transparent);
+    --mr-line-2: color-mix(in srgb, var(--od-2) 26%, transparent);
+    --mr-line-3: color-mix(in srgb, var(--od-2) 45%, transparent);
+    --mr-hover: color-mix(in srgb, var(--od-2) 8%, transparent);
+    --mr-press: color-mix(in srgb, var(--od-2) 14%, transparent);
+
+    --mr-ok: #2BFF88;
+    --mr-warn: var(--od-1);
+    --mr-bad: var(--od-3);
+    --mr-info: var(--od-2);
+
+    --mr-tint: var(--mr-setting-tint, 82%);
+    --mr-glass: color-mix(in srgb, var(--od-panel) var(--mr-tint), transparent);
+    --mr-glass-strong: color-mix(in srgb, var(--od-panel) min(100%, calc(var(--mr-tint) + 12%)), transparent);
+    --mr-glass-solid: var(--od-panel);
+    --mr-blur: var(--mr-setting-blur, 8px);
+    --mr-glass-filter: blur(var(--mr-blur));
+    --mr-glass-edge: inset 0 0 0 1px var(--mr-line-2);
+    --mr-shadow-1: 0 0 0 transparent;
+    --mr-shadow-2: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+    --mr-shadow-3: 0 20px 60px -10px rgba(0, 0, 0, 0.9);
+
+    --mr-r: 0px;
+    --mr-r-lg: 0px;
+    --mr-r-md: 0px;
+    --mr-r-sm: 0px;
+    --mr-r-pill: 0px;
+    --mr-gap: 10px;
+
+    /* Bahnschrift ships with Windows: a DIN-style face with a condensed axis */
+    --mr-font: "Bahnschrift", "Segoe UI", sans-serif;
+    --mr-font-display: "Bahnschrift", "Segoe UI", sans-serif;
+    --mr-font-mono: "Cascadia Mono", "Cascadia Code", Consolas, monospace;
+
+    --mr-ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --mr-ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+    --mr-ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+    --mr-t-1: 90ms;
+    --mr-t-2: 160ms;
+    --mr-t-3: 320ms;
+    --mr-t-4: 560ms;
+    --mr-motion: 1;
+    --mr-ambient: running;
+    --od-glitch: 1;          /* 0 under Glitch: Off */
+
+    --mr-spot-size: 220px;
+    --mr-spot: radial-gradient(var(--mr-spot-size) circle at var(--mr-mx, -999px) var(--mr-my, -999px),
+        color-mix(in srgb, var(--od-2) 10%, transparent), transparent 70%);
+}

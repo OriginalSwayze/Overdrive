@@ -1,0 +1,91 @@
+/* ==========================================================================
+   OVERDRIVE — base: type, selection, scrollbars, and the effect keyframes
+   (glitch, flicker, scan) every window uses.
+   ========================================================================== */
+
+html, body {
+    font-family: var(--mr-font) !important;
+    font-stretch: semi-condensed;
+    -webkit-font-smoothing: antialiased;
+    color: var(--mr-fg);
+}
+:where(button, input, textarea, select) { font-family: inherit; }
+
+::selection { background: var(--od-1); color: var(--od-ink); }
+
+:where(:focus-visible) {
+    outline: 1px solid var(--od-2);
+    outline-offset: 2px;
+}
+
+/* Scrollbars: a thin data rail with a yellow slider */
+::-webkit-scrollbar { width: 8px; height: 8px; background: transparent; }
+::-webkit-scrollbar-track { background: linear-gradient(90deg, transparent 3px, var(--mr-line) 3px, var(--mr-line) 4px, transparent 4px); }
+::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--od-1-40); min-height: 40px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background-color: var(--od-1); }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+
+/* -------------------------------------------------------------------------
+   Keyframes (names shared with the component files)
+   ------------------------------------------------------------------------- */
+@keyframes mr-fade-up {
+    0%   { opacity: 0; transform: translateX(calc(-12px * var(--mr-motion))); clip-path: inset(0 100% 0 0); }
+    60%  { opacity: 1; }
+    100% { opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
+}
+@keyframes mr-fade-in {
+    0% { opacity: 0; } 40% { opacity: .85; } 55% { opacity: .6; } 100% { opacity: 1; }
+}
+@keyframes mr-pop {
+    0%   { opacity: 0; clip-path: inset(0 0 100% 0); }
+    100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+@keyframes mr-sheen {
+    0%   { transform: translateX(-120%); }
+    50%, 100% { transform: translateX(400%); }
+}
+@keyframes mr-breathe {
+    0%, 100% { box-shadow: 0 0 0 1px var(--od-1), 0 0 14px var(--od-1-40); }
+    50%      { box-shadow: 0 0 0 1px var(--od-1), 0 0 28px var(--od-1-60); }
+}
+@keyframes mr-grad-pan { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
+@keyframes mr-spin { to { transform: rotate(360deg); } }
+
+/* Neon tube flicker */
+@keyframes od-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.82; }
+}
+/* RGB-split glitch for text (hover) */
+@keyframes od-glitch-text {
+    0%, 100% { text-shadow: none; transform: none; }
+    20% { text-shadow: calc(-2px * var(--od-glitch)) 0 var(--od-3), calc(2px * var(--od-glitch)) 0 var(--od-2); transform: translateX(calc(1px * var(--od-glitch))); }
+    40% { text-shadow: calc(2px * var(--od-glitch)) 0 var(--od-3), calc(-2px * var(--od-glitch)) 0 var(--od-2); transform: translateX(calc(-1px * var(--od-glitch))); }
+    60% { text-shadow: calc(-1px * var(--od-glitch)) 0 var(--od-3), calc(1px * var(--od-glitch)) 0 var(--od-2); transform: none; }
+    80% { text-shadow: none; }
+}
+/* Block glitch: slices of an element jump sideways */
+@keyframes od-glitch-slice {
+    0%, 100% { clip-path: inset(0 0 0 0); transform: none; }
+    10% { clip-path: inset(10% 0 70% 0); transform: translateX(calc(-6px * var(--od-glitch))); }
+    20% { clip-path: inset(60% 0 15% 0); transform: translateX(calc(6px * var(--od-glitch))); }
+    30% { clip-path: inset(35% 0 45% 0); transform: translateX(calc(-3px * var(--od-glitch))); }
+    40% { clip-path: inset(0 0 0 0); transform: none; }
+}
+/* Ambient: a short glitch every few seconds */
+@keyframes od-glitch-idle {
+    0%, 92%, 100% { text-shadow: none; transform: none; }
+    93% { text-shadow: calc(-2px * var(--od-glitch)) 0 var(--od-3), calc(2px * var(--od-glitch)) 0 var(--od-2); transform: translateX(calc(2px * var(--od-glitch))) skewX(calc(-8deg * var(--od-glitch))); }
+    95% { text-shadow: calc(2px * var(--od-glitch)) 0 var(--od-3), calc(-2px * var(--od-glitch)) 0 var(--od-2); transform: translateX(calc(-2px * var(--od-glitch))); }
+    97% { text-shadow: none; transform: none; }
+}
+@keyframes od-scan { from { transform: translateY(-140px); } to { transform: translateY(100vh); } }
+@keyframes od-grid-run { from { background-position: 0 0, 0 0; } to { background-position: 0 60px, 0 0; } }
+@keyframes od-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes od-march { to { background-position: 24px 0; } }
+@keyframes od-pulse-ring { 0% { box-shadow: 0 0 0 0 var(--od-1-60); } 100% { box-shadow: 0 0 0 14px transparent; } }
+
+@media (prefers-reduced-motion: reduce) {
+    :root { --mr-motion: 0; --mr-ambient: paused; --od-glitch: 0; }
+}

@@ -1,0 +1,24 @@
+/* OVERDRIVE — user colors (Millennium "Colors" page).
+   Used only when Look → Signal is set to "Custom". Opaque #hex only. */
+:root {
+    /*
+     * @name Custom: primary
+     * @description The main signal color: selection, Play, the active tab.
+     */
+    --od-user-1: #FCEE0A;
+    /*
+     * @name Custom: secondary
+     * @description Data readouts, hovers, the grid floor.
+     */
+    --od-user-2: #00F0FF;
+    /*
+     * @name Custom: alert
+     * @description Warnings, discounts, the city haze.
+     */
+    --od-user-3: #FF003C;
+    /*
+     * @name Custom: background
+     * @description The deepest background color.
+     */
+    --od-user-bg: #07070B;
+}

@@ -1,0 +1,2 @@
+/* City: Static — haze and grid stand still */
+html::before, html::after, body::after { animation: none !important; }

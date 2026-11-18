@@ -1,0 +1,433 @@
+/* ==========================================================================
+   OVERDRIVE — Store and Community pages inside the client.
+   These are separate web documents, so the foundation is imported again.
+   Valve's page layouts stay; Overdrive repaints them: the city behind,
+   HUD blocks, neon purchase buttons, cut-corner media.
+   ========================================================================== */
+@import url("./core/tokens.css");
+@import url("./core/base.css");
+@import url("./core/backdrop.css");
+
+/* ---- Canvas ------------------------------------------------------------- */
+html body,
+body.v6,
+body.v7,
+body.flat_page,
+.responsive_page_frame,
+.responsive_page_content,
+.responsive_page_template_content,
+.page_content_ctn,
+.home_page_body_ctn,
+.home_page_content,
+.game_page_background,
+.game_page_background.game,
+.page_background_holder,
+.store_page_bg,
+#store_header,
+.store_header_btn_gray,
+.home_page_gutter,
+.search_page,
+#search_results,
+.profile_page,
+.profile_content,
+.apphub_background,
+.pagecontent,
+.maincontent {
+    background-color: transparent !important;
+}
+.game_page_background { background-image: none !important; }
+.game_background_glow,
+.home_page_body_ctn.has_takeover::before,
+.page_background_holder { opacity: 0.25; }
+
+body,
+body.v6,
+body.v7 {
+    font-family: var(--mr-font) !important;
+    color: var(--mr-fg-2);
+}
+h1, h2, .pageheader, .apphub_AppName, #appHubAppName, .home_page_content h2,
+.home_section_title, .page_title_area .pageheader {
+    font-family: var(--mr-font-display) !important;
+    letter-spacing: -0.01em !important;
+    text-transform: none !important;
+    color: var(--mr-fg) !important;
+}
+a { transition: color var(--mr-t-1); }
+a:hover { color: var(--mr-accent-text) !important; }
+
+/* ---- Store navigation bar --------------------------------------------- */
+#store_nav_area .store_nav_bg,
+.store_nav_bg {
+    background: var(--mr-glass-strong) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    border-radius: var(--mr-r-pill) !important;
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-2) !important;
+}
+#store_nav_area .store_nav .tab,
+.store_nav .tab {
+    border-radius: var(--mr-r-pill) !important;
+    background: transparent !important;
+    transition: background-color var(--mr-t-1);
+}
+.store_nav .tab:hover,
+.store_nav .tab.focus { background: var(--mr-hover) !important; }
+.store_nav .tab > span { color: var(--mr-fg-2) !important; text-transform: none !important; font-weight: 600; }
+#store_search,
+.searchbox {
+    border-radius: var(--mr-r-pill) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--mr-line) !important;
+}
+#store_nav_search_term,
+.searchbox input { color: var(--mr-fg) !important; }
+
+/* ---- Capsules, carousels, tiles --------------------------------------- */
+.store_main_capsule,
+.store_capsule,
+.tab_item,
+.carousel_items > a,
+.special,
+.store_capsule_frame,
+.home_marketing_message,
+.spotlight_content,
+.dailydeal_ctn,
+.salepreviewwidgets_StoreSaleWidgetContainer_,
+.gamehover_ctn,
+.game_hover,
+.search_result_row,
+.wishlist_row,
+.game_area_purchase_game,
+.game_area_dlc_bubble,
+.block,
+.block_content,
+.review_box,
+.apphub_Card,
+.profile_customization,
+.showcase_content_bg {
+    border-radius: var(--mr-r) !important;
+}
+
+.store_main_capsule,
+.tab_item,
+.search_result_row,
+.wishlist_row,
+.store_capsule,
+.apphub_Card {
+    overflow: hidden;
+    transition: transform var(--mr-t-3) var(--mr-ease), box-shadow var(--mr-t-3) var(--mr-ease), background-color var(--mr-t-2) !important;
+}
+.store_capsule:hover,
+.tab_item:hover,
+.apphub_Card:hover {
+    transform: translateY(calc(-3px * var(--mr-motion)));
+    box-shadow: var(--mr-shadow-2), 0 0 0 1px var(--mr-accent-24) !important;
+}
+
+.tab_item,
+.search_result_row,
+.wishlist_row {
+    background: rgba(255, 255, 255, 0.035) !important;
+    margin-bottom: 6px !important;
+}
+.tab_item:hover,
+.tab_item.focus,
+.search_result_row:hover {
+    background: var(--mr-grad-soft) !important;
+}
+.tab_item_name,
+.search_result_row .title { color: var(--mr-fg) !important; }
+
+img.tab_item_cap_img,
+.search_capsule img,
+.store_capsule img,
+.capsule img,
+.screenshot_holder img,
+.highlight_strip_item img {
+    border-radius: var(--mr-r-sm);
+}
+
+/* Tabs ("New & Trending", "Top Sellers", ...) */
+.home_tabs_row .tab,
+.home_tabs_row_ctn .tab {
+    border-radius: var(--mr-r-pill) !important;
+    background: transparent !important;
+}
+.home_tabs_row .tab.active,
+.home_tabs_row_ctn .tab.active {
+    background: var(--mr-grad) !important;
+}
+.home_tabs_row .tab.active .tab_content { color: var(--mr-on-accent) !important; }
+
+/* Carousel dots and arrows */
+.carousel_thumbs > div,
+.carousel_thumbs div.focus {
+    border-radius: 99px !important;
+}
+.carousel_thumbs div.focus { background: var(--mr-a) !important; }
+.arrow.left, .arrow.right {
+    border-radius: 50% !important;
+}
+
+/* ---- Prices ------------------------------------------------------------- */
+.discount_pct,
+.bundle_base_discount,
+.search_discount span {
+    border-radius: var(--mr-r-pill) !important;
+    background: var(--mr-grad) !important;
+    color: var(--mr-on-accent) !important;
+    font-weight: 700 !important;
+    padding: 0 8px !important;
+}
+.discount_block,
+.discount_prices {
+    background: transparent !important;
+}
+.discount_final_price,
+.game_purchase_price,
+.price {
+    font-family: var(--mr-font-mono) !important;
+    color: var(--mr-fg) !important;
+}
+.discount_original_price { color: var(--mr-fg-4) !important; }
+
+/* ---- Buttons ------------------------------------------------------------ */
+.btn_green_steamui,
+.btn_green_white_innerfade,
+.btn_addtocart .btn_green_steamui,
+.btnv6_green_white_innerfade,
+.btn_blue_steamui,
+.btnv6_blue_hoverfade,
+.btn_medium,
+.btn_profile_action,
+.btn_darkblue_white_innerfade,
+.btnv6_lightblue_blue,
+.queue_btn_active,
+.queue_btn_inactive {
+    border-radius: var(--mr-r-pill) !important;
+    overflow: hidden;
+    border: none !important;
+    transition: transform var(--mr-t-2) var(--mr-ease-spring), box-shadow var(--mr-t-2), filter var(--mr-t-2) !important;
+}
+.btn_green_steamui,
+.btn_green_white_innerfade,
+.btnv6_green_white_innerfade {
+    background: var(--mr-grad) !important;
+    background-size: 200% 100% !important;
+    color: var(--mr-on-accent) !important;
+    box-shadow: 0 8px 24px -8px color-mix(in oklab, var(--mr-b) 70%, transparent) !important;
+}
+.btn_green_steamui > span,
+.btn_green_white_innerfade > span,
+.btnv6_green_white_innerfade > span {
+    background: transparent !important;
+    color: var(--mr-on-accent) !important;
+    font-weight: 700 !important;
+}
+.btn_green_steamui:hover,
+.btn_green_white_innerfade:hover,
+.btnv6_green_white_innerfade:hover {
+    transform: translateY(calc(-1px * var(--mr-motion)));
+    background-position: 100% 0 !important;
+    box-shadow: 0 12px 30px -8px color-mix(in oklab, var(--mr-b) 90%, transparent) !important;
+}
+:is(.btn_blue_steamui, .btnv6_blue_hoverfade, .btn_darkblue_white_innerfade, .btnv6_lightblue_blue, .btn_profile_action, .queue_btn_inactive),
+:is(.btn_blue_steamui, .btnv6_blue_hoverfade, .btn_darkblue_white_innerfade, .btnv6_lightblue_blue, .btn_profile_action, .queue_btn_inactive) > span {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: var(--mr-fg) !important;
+}
+:is(.btn_blue_steamui, .btnv6_blue_hoverfade, .btn_darkblue_white_innerfade, .btnv6_lightblue_blue, .btn_profile_action, .queue_btn_inactive):hover,
+:is(.btn_blue_steamui, .btnv6_blue_hoverfade, .btn_darkblue_white_innerfade, .btnv6_lightblue_blue, .btn_profile_action, .queue_btn_inactive):hover > span {
+    background: var(--mr-accent-24) !important;
+}
+
+/* ---- Game page purchase blocks --------------------------------------- */
+.game_area_purchase_game {
+    background: var(--mr-glass) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-1) !important;
+    padding: 18px 20px 26px !important;
+}
+.game_area_purchase_game h1 { font-size: 18px !important; }
+.game_purchase_action_bg,
+.game_purchase_action .game_purchase_action_bg {
+    background: rgba(6, 7, 11, 0.6) !important;
+    border-radius: var(--mr-r-pill) !important;
+    padding: 3px !important;
+}
+.game_area_purchase_game .game_area_purchase_platform,
+.game_area_purchase_game::before,
+.game_area_purchase_game::after { opacity: 0.6; }
+
+#game_highlights,
+.game_description_column,
+.rightcol .block,
+.glance_ctn,
+.game_meta_data .block {
+    border-radius: var(--mr-r) !important;
+}
+.glance_tags.popular_tags a.app_tag,
+.app_tag {
+    border-radius: var(--mr-r-pill) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: var(--mr-fg-2) !important;
+    box-shadow: none !important;
+    transition: background-color var(--mr-t-1), color var(--mr-t-1);
+}
+.app_tag:hover { background: var(--mr-accent-24) !important; color: var(--mr-fg) !important; }
+
+.game_page_autocollapse_fade,
+.game_page_autocollapse_readmore {
+    background: transparent !important;
+}
+
+/* Review score colors keep Valve's meaning, just softer */
+.game_review_summary.positive { color: var(--mr-ok) !important; }
+.game_review_summary.mixed { color: var(--mr-warn) !important; }
+.game_review_summary.negative { color: var(--mr-bad) !important; }
+
+/* ---- Community ---------------------------------------------------------- */
+.profile_header_bg,
+.profile_header_bg_texture {
+    background: transparent !important;
+}
+.profile_header .playerAvatar img,
+.playerAvatar img,
+.playerAvatar {
+    border-radius: 50% !important;
+}
+.profile_header .persona_name,
+.actual_persona_name {
+    font-family: var(--mr-font-display) !important;
+    font-weight: 750 !important;
+    background: var(--mr-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+.profile_leftcol .profile_customization,
+.profile_rightcol,
+.profile_content.has_profile_background {
+    background: var(--mr-glass) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+}
+.profile_rightcol { border-radius: var(--mr-r) !important; padding: 14px !important; }
+.profile_count_link,
+.profile_count_link_preview_ctn a {
+    border-radius: var(--mr-r-md);
+    transition: background-color var(--mr-t-1);
+}
+.profile_count_link:hover { background: var(--mr-hover); }
+
+/* Inputs on web pages */
+input[type="text"],
+input[type="search"],
+textarea,
+select {
+    border-radius: var(--mr-r-md) !important;
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid var(--mr-line) !important;
+    color: var(--mr-fg) !important;
+}
+input[type="text"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+    border-color: var(--mr-accent-40) !important;
+    box-shadow: 0 0 0 4px var(--mr-accent-08) !important;
+    outline: none !important;
+}
+
+/* Page-in animation for the main content */
+.page_content_ctn,
+.home_page_content,
+.profile_page,
+.search_page {
+    animation: mr-fade-up var(--mr-t-4) var(--mr-ease) backwards;
+}
+
+/* ---- New (React) store header: hashed classes, so anchor on the search field */
+.Panel.Focusable:has(input[name="term"][role="combobox"]):not(:has(.Panel.Focusable input[name="term"])) {
+    background: var(--mr-glass-strong) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    box-shadow: var(--mr-glass-edge), var(--mr-shadow-2) !important;
+}
+input[name="term"][role="combobox"] {
+    border-radius: var(--mr-r-pill) 0 0 var(--mr-r-pill) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+form:has(input[name="term"][role="combobox"]) button[type="submit"] {
+    border-radius: 0 var(--mr-r-pill) var(--mr-r-pill) 0 !important;
+    background: var(--mr-grad) !important;
+    color: var(--mr-on-accent) !important;
+}
+
+/* Featured carousel: the info panel beside the big capsule */
+.store_main_capsule .info,
+#home_maincap_v7 .info {
+    background: var(--mr-glass) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+}
+.home_page_content .wishlist_flag,
+.ds_flag.ds_wishlist_flag {
+    background: var(--mr-grad) !important;
+    color: var(--mr-on-accent) !important;
+    border-radius: var(--mr-r-pill) !important;
+}
+
+/* ===== OVERDRIVE web layer ===== */
+h1, h2, .pageheader, .home_page_content h2, .home_section_title, .apphub_AppName, #appHubAppName {
+    text-transform: uppercase !important;
+    letter-spacing: 0.14em !important;
+}
+.home_page_content h2::before,
+.home_section_title::before { content: "// "; color: var(--od-1); }
+.store_main_capsule, .store_capsule, .tab_item, .search_result_row, .wishlist_row, .apphub_Card,
+.game_area_purchase_game, img.tab_item_cap_img, .search_capsule img, .store_capsule img, .screenshot_holder img,
+.btn_green_steamui, .btn_green_white_innerfade, .btnv6_green_white_innerfade, .btn_blue_steamui, .btnv6_blue_hoverfade,
+.btn_medium, .btn_profile_action, .discount_pct, .app_tag, .store_nav_bg, .store_nav .tab, #store_search, .searchbox {
+    border-radius: 0 !important;
+}
+.store_main_capsule, .tab_item, .search_result_row, .game_area_purchase_game, .store_capsule {
+    clip-path: var(--od-chamfer-sm);
+}
+.tab_item:hover, .tab_item.focus, .search_result_row:hover {
+    background: linear-gradient(90deg, var(--od-2-10), transparent) !important;
+    box-shadow: inset 3px 0 0 var(--od-2) !important;
+}
+.btn_green_steamui, .btn_green_white_innerfade, .btnv6_green_white_innerfade {
+    background: var(--od-1) !important;
+    box-shadow: none !important;
+    clip-path: var(--od-chamfer-sm);
+}
+.btn_green_steamui > span, .btn_green_white_innerfade > span, .btnv6_green_white_innerfade > span {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+}
+.btn_green_steamui:hover, .btn_green_white_innerfade:hover, .btnv6_green_white_innerfade:hover {
+    background: var(--od-2) !important;
+    transform: none !important;
+}
+.discount_pct, .bundle_base_discount, .search_discount span { background: var(--od-3) !important; color: #fff !important; }
+.discount_final_price { color: var(--od-1) !important; text-shadow: var(--od-text-neon); }
+.home_tabs_row .tab.active, .home_tabs_row_ctn .tab.active { background: var(--od-1) !important; }
+.Panel.Focusable:has(input[name="term"][role="combobox"]):not(:has(.Panel.Focusable input[name="term"])) {
+    box-shadow: inset 0 -1px 0 var(--od-1-40), inset 0 0 0 1px var(--mr-line) !important;
+}
+input[name="term"][role="combobox"] { border-radius: 0 !important; font-family: var(--mr-font-mono) !important; }
+form:has(input[name="term"][role="combobox"]) button[type="submit"] { border-radius: 0 !important; background: var(--od-1) !important; }
+.profile_header .playerAvatar img, .playerAvatar img, .playerAvatar { border-radius: 0 !important; }
+.profile_header .persona_name, .actual_persona_name {
+    background: none !important;
+    color: var(--od-1) !important;
+    -webkit-text-fill-color: var(--od-1);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-shadow: var(--od-text-neon);
+}
+.profile_rightcol { border-radius: 0 !important; clip-path: var(--od-chamfer); }
+input[type="text"], input[type="search"], textarea, select { border-radius: 0 !important; }

@@ -1,0 +1,9 @@
+/* OVERDRIVE signal: Redline — red, cyan, white */
+:root {
+    --od-p-1: #FF2A4D;
+    --od-p-2: #00E5FF;
+    --od-p-3: #FFE45C;
+    --od-p-bg: #0A0507;
+    --od-p-panel: #140A0D;
+    --od-p-ink: #0A0507;
+}

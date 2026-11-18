@@ -1,0 +1,425 @@
+{
+    "name": "Overdrive",
+    "author": "OriginalSwayze",
+    "description": "A neon cyberpunk HUD for Steam: cut-corner panels over a running grid city, slanted tabs, a glitching Play slab, CRT scanlines, a boot sequence and a live clock readout.",
+    "version": "1.0.0",
+    "tags": [
+        "Cyberpunk",
+        "Neon",
+        "Dark",
+        "Animated",
+        "HUD"
+    ],
+    "header_image": "https://raw.githubusercontent.com/OriginalSwayze/Overdrive/main/media/library.gif",
+    "splash_image": "https://raw.githubusercontent.com/OriginalSwayze/Overdrive/main/media/gamepage.png",
+    "github": {
+        "owner": "OriginalSwayze",
+        "repo_name": "Overdrive"
+    },
+    "RootColors": "root-colors.css",
+    "Steam-WebKit": "webkit.css",
+    "Conditions": {
+        "Signal": {
+            "description": "The neon palette: Voltage (yellow/cyan/red), Redline, Netwave, Toxic, Chrome, or your own colors.",
+            "tab": "Look",
+            "default": "Voltage",
+            "values": {
+                "Voltage": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/voltage.css"
+                    }
+                },
+                "Redline": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/redline.css"
+                    }
+                },
+                "Netwave": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/netwave.css"
+                    }
+                },
+                "Toxic": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/toxic.css"
+                    }
+                },
+                "Chrome": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/chrome.css"
+                    }
+                },
+                "Custom": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/presets/custom.css"
+                    }
+                }
+            }
+        },
+        "City": {
+            "description": "Behind the panels. Live: flickering neon haze and a grid floor running toward you. Static: frozen. Blackout: plain black.",
+            "tab": "Look",
+            "default": "Live",
+            "values": {
+                "Live": {},
+                "Static": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/backdrop-static.css"
+                    }
+                },
+                "Blackout": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/backdrop-void.css"
+                    }
+                }
+            }
+        },
+        "Grid floor": {
+            "description": "The perspective grid at the bottom of the window.",
+            "tab": "Look",
+            "default": "On",
+            "values": {
+                "On": {},
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/grid-off.css"
+                    }
+                }
+            }
+        },
+        "Scanlines": {
+            "description": "CRT scanlines and the sweeping scan beam over everything.",
+            "tab": "Look",
+            "default": "Normal",
+            "values": {
+                "Normal": {},
+                "Heavy CRT": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/scanlines-heavy.css"
+                    }
+                },
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/scanlines-off.css"
+                    }
+                }
+            }
+        },
+        "Corner cut": {
+            "description": "How deep the chamfered corners on panels and buttons are.",
+            "tab": "Look",
+            "default": 14,
+            "slider": {
+                "cssVariable": "--mr-setting-radius",
+                "min": 0,
+                "max": 30,
+                "step": 2,
+                "unit": "px"
+            }
+        },
+        "Panel opacity": {
+            "description": "How solid the HUD panels are: lower shows more of the city.",
+            "tab": "Look",
+            "default": 82,
+            "slider": {
+                "cssVariable": "--mr-setting-tint",
+                "min": 30,
+                "max": 100,
+                "step": 5,
+                "unit": "%"
+            }
+        },
+        "Panel blur": {
+            "description": "Frost behind the panels.",
+            "tab": "Look",
+            "default": 8,
+            "slider": {
+                "cssVariable": "--mr-setting-blur",
+                "min": 0,
+                "max": 40,
+                "step": 4,
+                "unit": "px"
+            }
+        },
+        "Layout": {
+            "description": "Floating: cut-corner panels with gaps. Seamless: edge to edge.",
+            "tab": "Layout",
+            "default": "Floating",
+            "values": {
+                "Floating": {},
+                "Seamless": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/layout-seamless.css"
+                    }
+                }
+            }
+        },
+        "Navigator": {
+            "description": "Where the Store / Library / Community bar sits.",
+            "tab": "Layout",
+            "default": "Center",
+            "values": {
+                "Center": {},
+                "Left": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/nav-left.css"
+                    }
+                }
+            }
+        },
+        "Game list density": {
+            "description": "Row size in the library game list.",
+            "tab": "Layout",
+            "default": "Comfortable",
+            "values": {
+                "Comfortable": {},
+                "Compact": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/list-compact.css"
+                    }
+                }
+            }
+        },
+        "What's New shelf": {
+            "description": "The What's New carousel on the library home.",
+            "tab": "Layout",
+            "default": "Show",
+            "values": {
+                "Show": {},
+                "Hide": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/hide-whats-new.css"
+                    }
+                }
+            }
+        },
+        "Dock labels": {
+            "description": "Labels on the dock buttons: only on hover, or always.",
+            "tab": "Layout",
+            "default": "On hover",
+            "values": {
+                "On hover": {},
+                "Always": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/dock-labels.css"
+                    }
+                }
+            }
+        },
+        "HUD clock": {
+            "description": "The live clock and network readout next to the menus.",
+            "tab": "Layout",
+            "default": "On",
+            "values": {
+                "On": {},
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/hud-off.css"
+                    }
+                }
+            }
+        },
+        "Glitch": {
+            "description": "RGB-split and slice glitches on hovers, the logo and the Play button.",
+            "tab": "Motion",
+            "default": "Full",
+            "values": {
+                "Full": {},
+                "Subtle": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/glitch-subtle.css"
+                    }
+                },
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/glitch-off.css"
+                    }
+                }
+            }
+        },
+        "Boot sequence": {
+            "description": "The OVERDRIVE boot screen when the Steam window first opens.",
+            "tab": "Motion",
+            "default": "On",
+            "values": {
+                "On": {},
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/boot-off.css"
+                    }
+                }
+            }
+        },
+        "Motion": {
+            "description": "Full: everything. Calm: hovers only, the city stands still. Still: no theme motion at all.",
+            "tab": "Motion",
+            "default": "Full",
+            "values": {
+                "Full": {},
+                "Calm": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/motion-calm.css"
+                    }
+                },
+                "Still": {
+                    "TargetCss": {
+                        "affects": [
+                            ".*"
+                        ],
+                        "src": "options/motion-still.css"
+                    }
+                }
+            }
+        },
+        "Cover hover": {
+            "description": "Library covers under the cursor. Tilt: 3D with a scan glare. Lift: rise. Off: nothing.",
+            "tab": "Motion",
+            "default": "Tilt",
+            "values": {
+                "Tilt": {},
+                "Lift": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/covers-lift.css"
+                    }
+                },
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/covers-off.css"
+                    }
+                }
+            }
+        },
+        "Cursor light": {
+            "description": "A cyan light that follows the cursor across panels.",
+            "tab": "Motion",
+            "default": "On",
+            "values": {
+                "On": {},
+                "Off": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/cursor-light-off.css"
+                    }
+                }
+            }
+        },
+        "Privacy": {
+            "description": "Blur your account name and wallet until hovered.",
+            "tab": "Extras",
+            "default": "Off",
+            "values": {
+                "Off": {},
+                "Blur": {
+                    "TargetCss": {
+                        "affects": [
+                            "^Steam$"
+                        ],
+                        "src": "options/privacy.css"
+                    }
+                }
+            }
+        }
+    },
+    "Patches": [
+        {
+            "MatchRegexString": "^Steam$",
+            "TargetCss": "main.css",
+            "TargetJs": "js/main.js"
+        },
+        {
+            "MatchRegexString": ".ModalDialogPopup",
+            "TargetCss": "main.css"
+        },
+        {
+            "MatchRegexString": ".FullModalOverlay",
+            "TargetCss": "main.css"
+        },
+        {
+            "MatchRegexString": ".friendsui-container",
+            "TargetCss": "friends.css"
+        },
+        {
+            "MatchRegexString": ".ContextMenuPopup",
+            "TargetCss": "popup.css"
+        },
+        {
+            "MatchRegexString": ".DesktopToastContainer",
+            "TargetCss": "toast.css"
+        },
+        {
+            "MatchRegexString": "^Sign in to Steam$",
+            "TargetCss": "login.css"
+        }
+    ]
+}

@@ -1,0 +1,573 @@
+/* ==========================================================================
+   OVERDRIVE — the cyberpunk layer.
+   Imported last in main.css: it reshapes the shared components into a
+   hard-edged neon HUD (cut corners, slanted tabs, glitch, data readouts).
+   ========================================================================== */
+
+/* ===== Type ============================================================ */
+html .DesktopUI,
+html .DesktopUI * { font-stretch: semi-condensed; }
+
+/* ===== Wordmark ======================================================== */
+html .RootMenuBar .RootMenuButton .SteamButton::before {
+    width: 12px;
+    height: 12px;
+    border-radius: 0;
+    background: var(--od-1);
+    box-shadow: var(--od-neon-1);
+    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    animation: od-flicker 4s linear infinite;
+    animation-play-state: var(--mr-ambient);
+}
+html .RootMenuBar .RootMenuButton .SteamButton::after {
+    content: "OVERDRIVE";
+    font-family: var(--mr-font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.22em;
+    color: var(--od-1);
+    text-shadow: var(--od-text-neon);
+    animation: od-glitch-idle 6s steps(1) infinite;
+    animation-play-state: var(--mr-ambient);
+}
+html .RootMenuBar .RootMenuButton {
+    border-radius: 0 !important;
+    font-family: var(--mr-font-mono) !important;
+    font-size: 11px !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+}
+html .RootMenuBar .RootMenuButton:hover,
+html .RootMenuBar .RootMenuButton:has(.MenuOpen) {
+    background: transparent !important;
+    color: var(--od-2) !important;
+    animation: od-glitch-text 260ms steps(2) 1;
+}
+
+/* JS clock / status readout (js/main.js inserts .od-hud) */
+html .od-hud {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 14px;
+    padding-left: 14px;
+    border-left: 1px solid var(--mr-line-2);
+    font-family: var(--mr-font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    color: var(--mr-fg-3);
+    white-space: nowrap;
+    pointer-events: none;
+}
+html .od-hud b { color: var(--od-2); font-weight: 400; }
+html .od-hud i { font-style: normal; color: var(--mr-ok); }
+html .od-hud i::before { content: "\25CF  "; animation: od-blink 1.2s steps(1) infinite; }
+
+/* ===== Navigator: slanted tabs on a data bar =========================== */
+html .SuperNavBar .SuperNav {
+    background: color-mix(in srgb, var(--od-panel) 85%, transparent) !important;
+    border-radius: 0 !important;
+    clip-path: var(--od-slant);
+    padding: 4px 16px !important;
+    box-shadow: inset 0 -1px 0 var(--od-1-40), inset 0 1px 0 var(--mr-line) !important;
+}
+html .SuperNav .SuperNavMenu > .MenuButton {
+    border-radius: 0 !important;
+    font-family: var(--mr-font-display) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    clip-path: var(--od-slant);
+    padding: 0 20px !important;
+}
+html .SuperNav .SuperNavMenu:hover > .MenuButton {
+    color: var(--od-2) !important;
+    background: var(--od-2-10) !important;
+    animation: od-glitch-text 300ms steps(2) 1;
+}
+html .SuperNav .SuperNavMenu.Selected > .MenuButton { color: var(--od-ink) !important; }
+html:not(.mr-js) .SuperNav .SuperNavMenu.Selected > .MenuButton { background: var(--od-1) !important; }
+html .SuperNav .mr-nav-indicator {
+    border-radius: 0 !important;
+    background: var(--od-1) !important;
+    clip-path: var(--od-slant);
+    box-shadow: none !important;
+    animation: none !important;
+    filter: drop-shadow(0 0 10px var(--od-1-60));
+    transition: transform var(--mr-t-3) cubic-bezier(0.7, 0, 0.2, 1), width var(--mr-t-3) var(--mr-ease) !important;
+}
+html .SuperNav .mr-nav-indicator::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, transparent 0 3px, rgba(0, 0, 0, 0.12) 3px 4px);
+}
+html .SuperNav > svg.Arrow { border-radius: 0 !important; }
+html .SuperNav > svg.Arrow.Enabled:hover { background: var(--od-2-10) !important; }
+html .SuperNav > svg.Arrow path,
+html .SuperNav > svg.Arrow polyline { stroke: var(--od-2) !important; }
+
+/* ===== Title bar controls ============================================= */
+html .TitleBarControls .Button,
+html .TitleBarControls .AccountMenu {
+    border-radius: 0 !important;
+    background: color-mix(in srgb, var(--od-panel) 80%, transparent) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+    clip-path: var(--od-chamfer-sm);
+}
+html .TitleBarControls .Button:hover,
+html .TitleBarControls .AccountMenu:hover {
+    background: var(--od-2-10) !important;
+    box-shadow: inset 0 0 0 1px var(--od-2) !important;
+    transform: none !important;
+}
+html .TitleBarControls .Button:hover svg,
+html .TitleBarControls .Button:hover svg path { fill: var(--od-2) !important; }
+html .TitleBarControls .Button.Active {
+    background: var(--od-3-20) !important;
+    box-shadow: inset 0 0 0 1px var(--od-3) !important;
+}
+html .TitleBarControls .Button.Active svg,
+html .TitleBarControls .Button.Active svg path { fill: var(--od-3) !important; }
+html .TitleBarControls .AccountMenu {
+    font-family: var(--mr-font-mono);
+    font-size: 11px !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+html .TitleBarControls .AccountMenu .avatarHolder,
+html .TitleBarControls .AccountMenu img.avatar {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer-sm);
+}
+html .TitleBarControls .AccountMenu .avatarHolder { box-shadow: none; }
+html .TitleBarControls .AccountMenu .WalletBalance {
+    border-radius: 0 !important;
+    background: var(--od-1-10) !important;
+    color: var(--od-1) !important;
+}
+html .TitleBar .title-bar-actions .title-area-icon { border-radius: 0 !important; }
+html .TitleBar .title-bar-actions .title-area-icon:hover { transform: none !important; background: var(--od-2-10) !important; }
+html .TitleBar .title-bar-actions .title-area-icon.closeButton:hover { background: var(--od-3) !important; }
+
+/* ===== Islands: cut-corner HUD panels ================================= */
+html .Library > .Container > div:not(.MainPanel):first-child,
+html .MainPanel {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer) !important;
+    background:
+        /* diagonal edge on the cut corners */
+        linear-gradient(135deg, transparent calc(var(--od-cut) * 0.7 - 1px), var(--od-1) calc(var(--od-cut) * 0.7 - 1px), var(--od-1) calc(var(--od-cut) * 0.7 + 1px), transparent calc(var(--od-cut) * 0.7 + 1px)) top left / calc(var(--od-cut) * 2) calc(var(--od-cut) * 2) no-repeat,
+        linear-gradient(315deg, transparent calc(var(--od-cut) * 0.7 - 1px), var(--mr-line-3) calc(var(--od-cut) * 0.7 - 1px), var(--mr-line-3) calc(var(--od-cut) * 0.7 + 1px), transparent calc(var(--od-cut) * 0.7 + 1px)) bottom right / calc(var(--od-cut) * 2) calc(var(--od-cut) * 2) no-repeat,
+        /* yellow tab on the top edge */
+        linear-gradient(var(--od-1), var(--od-1)) calc(var(--od-cut) + 10px) 0 / 60px 2px no-repeat,
+        var(--mr-glass) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+    animation: mr-fade-up var(--mr-t-4) var(--mr-ease) backwards;
+}
+
+/* HUD tag in the corner of the game list island */
+html .Library > .Container > div:not(.MainPanel):first-child { position: relative; }
+html .Library > .Container > div:not(.MainPanel):first-child::before {
+    content: "SYS://LIBRARY.DB";
+    position: absolute;
+    right: 12px;
+    bottom: 6px;
+    font-family: var(--mr-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--mr-fg-4);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* ===== Game list ====================================================== */
+html .HomeBox .Bar,
+html .CollectionsButton .Bar { border-radius: 0 !important; }
+html .HomeBox .Bar .Label {
+    font-family: var(--mr-font-display) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.2em !important;
+    text-transform: uppercase !important;
+}
+html .HomeBox .Bar.Selected {
+    background: var(--od-1) !important;
+    clip-path: var(--od-chamfer-r);
+    box-shadow: none !important;
+}
+html .HomeBox .Bar.Selected .Label { color: var(--od-ink) !important; }
+html .HomeBox .Bar.Selected .Label::before { content: "> "; }
+
+html .SearchInput input.DialogInput,
+html .SearchInput input.DialogTextInputBase {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer-sm);
+    font-family: var(--mr-font-mono) !important;
+    font-size: 12px !important;
+    letter-spacing: 0.06em;
+    background-color: rgba(0, 0, 0, 0.45) !important;
+    border: 1px solid var(--mr-line-2) !important;
+}
+html .SearchInput input.DialogInput:focus {
+    border-color: var(--od-2) !important;
+    box-shadow: inset 0 0 12px var(--od-2-20) !important;
+}
+
+html .ReactVirtualized__List .SectionName {
+    font-family: var(--mr-font-mono);
+    font-size: 11px !important;
+    letter-spacing: 0.14em !important;
+    color: var(--od-2) !important;
+}
+html .ReactVirtualized__List .SectionName::before { content: "// "; color: var(--mr-fg-4); }
+html .ReactVirtualized__List .SectionRule {
+    background: repeating-linear-gradient(90deg, var(--mr-line-2) 0 4px, transparent 4px 8px) !important;
+}
+
+html .ReactVirtualized__List .Container:has(> .GameListEntryContainer) {
+    border-radius: 0 !important;
+}
+html .ReactVirtualized__List .GameListEntryContainer > span {
+    font-size: 13px !important;
+    letter-spacing: 0.02em;
+}
+html .ReactVirtualized__List .GameListEntryContainer .GameIcon,
+html .ReactVirtualized__List .GameListEntryContainer .GameIcon img { border-radius: 0 !important; }
+html .ReactVirtualized__List .Container:has(> .GameListEntryContainer):hover {
+    background: linear-gradient(90deg, var(--od-2-10), transparent 80%) !important;
+    box-shadow: inset 2px 0 0 var(--od-2);
+}
+html .ReactVirtualized__List .Container:has(> .GameListEntryContainer):hover .GameListEntryContainer > span {
+    color: var(--od-2) !important;
+}
+
+/* Selected: an inverted yellow slab, cut on the right */
+html .ReactVirtualized__List .Container.Selected:has(> .GameListEntryContainer) {
+    background: var(--od-1) !important;
+    clip-path: var(--od-chamfer-r);
+    box-shadow: none !important;
+}
+html .ReactVirtualized__List .Container.Selected:has(> .GameListEntryContainer)::before { display: none; }
+html .ReactVirtualized__List .Container.Selected .GameListEntryContainer > span,
+html .ReactVirtualized__List .Container.Selected:hover .GameListEntryContainer > span {
+    color: var(--od-ink) !important;
+    font-weight: 700 !important;
+}
+html .ReactVirtualized__List .Container.Selected .GameListEntryContainer { transform: translateX(4px); }
+html .ReactVirtualized__List .Container.Running:has(> .GameListEntryContainer) {
+    box-shadow: inset 2px 0 0 var(--mr-ok);
+}
+
+/* ===== Home ============================================================ */
+html .UpdatesContainer { background: transparent !important; }
+html .UpdatesContainer .PageableContainer > .Name,
+html .ShowcaseHeader .Focusable,
+html .ShowcaseHeader .CollectionDropDown .DialogDropDown_CurrentDisplay,
+html .ShowcaseHeader .DialogDropDown_CurrentDisplay {
+    font-family: var(--mr-font-display) !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.16em !important;
+    text-transform: uppercase !important;
+    color: var(--mr-fg) !important;
+}
+html .UpdatesContainer .Name::before { content: "// "; color: var(--od-1); }
+html .UpdatesContainer .EventTime { color: var(--od-2) !important; font-family: var(--mr-font-mono); }
+html .UpdatesContainer .HoversEnabled,
+html .UpdatesContainer .PartnerEventRowCapsule_MainImageContainer { border-radius: 0 !important; clip-path: var(--od-chamfer-sm); }
+html .UpdatesContainer .GameIconAndName { border-radius: 0 !important; }
+html .PageLeft, html .PageRight {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer-sm);
+    background: var(--od-2-10) !important;
+}
+html :is(.PageLeft, .PageRight):not(.Disabled):hover { background: var(--od-1) !important; transform: none !important; }
+html :is(.PageLeft, .PageRight):not(.Disabled):hover svg * { stroke: var(--od-ink) !important; }
+html .ShowcaseHeader .Rule,
+html .AddShowcaseRow .Rule {
+    background: repeating-linear-gradient(90deg, var(--mr-line-2) 0 6px, transparent 6px 10px) !important;
+}
+
+/* Covers: cut corners, neon frame on hover */
+html .LibraryItemBox,
+html .LibraryItemBox > * {
+    border-radius: 0 !important;
+}
+html .LibraryItemBox { clip-path: var(--od-chamfer); box-shadow: none !important; }
+html .LibraryItemBox:hover {
+    box-shadow: none !important;
+    filter: drop-shadow(0 0 0 transparent);
+}
+html .LibraryItemBox::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 2px var(--od-1), inset 0 0 24px var(--od-1-40);
+    opacity: 0;
+    transition: opacity var(--mr-t-2);
+}
+html .LibraryItemBox:hover::before {
+    opacity: 1;
+    animation: od-flicker 600ms linear 1;
+}
+html .LibraryItemBox::after {
+    background:
+        linear-gradient(180deg, transparent 0%, var(--od-2-20) 50%, transparent 52%) 0 var(--mr-gy, 0%) / 100% 300% no-repeat,
+        radial-gradient(60% 50% at var(--mr-gx, 50%) var(--mr-gy, 0%), rgba(255, 255, 255, 0.18), transparent 70%) !important;
+    mix-blend-mode: screen !important;
+}
+html .RecentGame .AppPortraitBanner,
+html .AppPortraitBanner { border-radius: 0 !important; }
+
+/* ===== Game page ======================================================= */
+html .AppDetailsMain .TopCapsule { border-radius: 0 !important; }
+html .AppDetailsMain .TopCapsule img.TitleLogo {
+    filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.9)) drop-shadow(3px 0 0 color-mix(in srgb, var(--od-3) 50%, transparent)) drop-shadow(-3px 0 0 color-mix(in srgb, var(--od-2) 50%, transparent));
+    animation: od-glitch-slice 900ms steps(1) 300ms 1 backwards, od-logo-idle 9s steps(1) 2s infinite;
+}
+@keyframes od-logo-idle {
+    0%, 95%, 100% { transform: none; clip-path: inset(0 0 0 0); }
+    96% { transform: translateX(calc(5px * var(--od-glitch))); clip-path: inset(20% 0 50% 0); }
+    97% { transform: translateX(calc(-4px * var(--od-glitch))); clip-path: inset(55% 0 10% 0); }
+    98% { transform: none; clip-path: inset(0 0 0 0); }
+}
+html .AppDetailsMain .HeaderFeatures .InCollection {
+    border-radius: 0 !important;
+    background: var(--od-ink) !important;
+    color: var(--od-1) !important;
+    box-shadow: inset 0 0 0 1px var(--od-1) !important;
+    font-family: var(--mr-font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    clip-path: var(--od-chamfer-sm);
+}
+
+html .AppDetailsMain .PlayBar > .InnerContainer {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer);
+    background:
+        linear-gradient(var(--od-1), var(--od-1)) 0 0 / 100% 1px no-repeat,
+        repeating-linear-gradient(90deg, transparent 0 22px, var(--mr-line) 22px 23px) 0 100% / 100% 4px no-repeat,
+        var(--mr-glass-strong) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+}
+
+/* PLAY: a yellow slab that glitches when you reach for it */
+html .PlayButton.ButtonChild {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer);
+    background: var(--od-1) !important;
+    box-shadow: none !important;
+    animation: none !important;
+    min-width: 176px;
+}
+html .PlayButton.ButtonChild .ButtonText {
+    font-family: var(--mr-font-display) !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3em !important;
+    color: var(--od-ink) !important;
+}
+html .PlayButton.ButtonChild::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(0, 0, 0, 0.07) 6px 8px);
+    pointer-events: none;
+}
+html .PlayButton.ButtonChild::after {
+    width: 18% !important;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent) !important;
+}
+html .PlayButton.ButtonChild:hover {
+    background: var(--od-2) !important;
+    transform: none !important;
+    animation: od-glitch-slice 420ms steps(1) 1 !important;
+}
+html .PlayButton.ButtonChild:active { transform: translate(2px, 2px) !important; }
+html .PlayButton.ButtonChild:has(.SVGIcon_Stop),
+html .Panel.Red .PlayButton.ButtonChild,
+html .Red > .PlayButton.ButtonChild {
+    background: var(--od-3) !important;
+}
+html .Panel.Red .PlayButton.ButtonChild .ButtonText,
+html .Red > .PlayButton.ButtonChild .ButtonText { color: #fff !important; }
+
+html .PlayBar .GameStat { border-radius: 0 !important; }
+html .PlayBar .PlayBarLabel {
+    font-family: var(--mr-font-mono);
+    font-size: 9.5px !important;
+    letter-spacing: 0.18em !important;
+    color: var(--od-2) !important;
+}
+html .PlayBar :is(.LastPlayedInfo, .PlayBarDetailLabel) {
+    font-family: var(--mr-font-mono);
+    color: var(--mr-fg) !important;
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.25);
+}
+html .PlayBar .RightControls .MenuButton {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer-sm);
+    background: var(--od-2-10) !important;
+}
+html .PlayBar .RightControls .MenuButton:hover {
+    background: var(--od-1) !important;
+    transform: none !important;
+}
+html .PlayBar .RightControls .MenuButton:hover svg,
+html .PlayBar .RightControls .MenuButton:hover svg * { fill: var(--od-ink) !important; }
+
+html .LinksSection .LinkInner {
+    border-radius: 0 !important;
+    clip-path: var(--od-slant);
+    background: var(--od-2-10) !important;
+    color: var(--od-2) !important;
+    font-family: var(--mr-font-display) !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    padding: 6px 20px !important;
+}
+html .LinksSection .LinkInner:hover {
+    background: var(--od-2) !important;
+    color: var(--od-ink) !important;
+    transform: none !important;
+}
+
+html .AppDetailsSection:not(.LinksSection) > .Panel,
+html .AppDetailsSection.Rollup > .Panel,
+html .PartnerEvent.Event {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer-sm);
+    background: rgba(0, 0, 0, 0.35) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line) !important;
+}
+html .PartnerEvent.Event:hover { box-shadow: inset 0 0 0 1px var(--od-2-40) !important; }
+html .PartnerEventFeatured,
+html .PartnerEvent.Event.PartnerEventFeatured { box-shadow: inset 0 0 0 1px var(--od-1-40) !important; }
+html .PartnerEventFeaturedHeader {
+    background: var(--od-1) !important;
+    color: var(--od-ink) !important;
+    font-family: var(--mr-font-display);
+    letter-spacing: 0.2em;
+}
+html .AppDetailsSection .SectionHeader,
+html h2.SectionHeader {
+    font-family: var(--mr-font-display) !important;
+    letter-spacing: 0.22em !important;
+    color: var(--mr-fg) !important;
+}
+html .AppDetailsSection .SectionHeader::before {
+    width: 8px;
+    height: 8px;
+    border-radius: 0;
+    background: var(--od-1);
+    box-shadow: var(--od-neon-1);
+}
+html .PartnerEvent img,
+html .AppDetailsMain .Portrait .BoxArt,
+html .AppDetailsMain .Portrait .BoxArt img { border-radius: 0 !important; }
+
+/* Progress bars: segmented neon */
+html .ProgressBar .Unlocked,
+html .ProgressBar [class*="Unlocked"],
+html .PlayBar .DetailsProgressBar {
+    border-radius: 0 !important;
+    background: repeating-linear-gradient(90deg, var(--od-1) 0 6px, transparent 6px 8px) !important;
+    box-shadow: 0 0 8px var(--od-1-40) !important;
+}
+html .ProgressBar,
+html .PlayBar .DetailsProgressContainer { border-radius: 0 !important; }
+
+/* ===== Dock ============================================================= */
+html .BottomBar::before {
+    clip-path: var(--od-chamfer);
+    background:
+        linear-gradient(var(--od-1), var(--od-1)) 50% 0 / 40px 2px no-repeat,
+        var(--mr-glass-strong) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+}
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton) {
+    border-radius: 0 !important;
+    font-family: var(--mr-font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+html .BottomBar :is(.AddGameButton, .DownloadStatus, .FriendsButton):hover {
+    background: var(--od-2-10) !important;
+    color: var(--od-2) !important;
+}
+html .BottomBar .DownloadStatus .DetailedDownloadProgress .ProgressBarWrapper { border-radius: 0 !important; }
+html .BottomBar .DownloadStatus .DetailedDownloadProgress .ProgressBar {
+    background: repeating-linear-gradient(90deg, var(--od-1) 0 6px, transparent 6px 8px) !important;
+    animation: od-march 600ms linear infinite !important;
+}
+
+/* ===== Alerts ========================================================== */
+html .OuterFrame > .Alert .ActionAlert {
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer);
+    box-shadow: inset 0 0 0 1px var(--od-1-40) !important;
+}
+html .OuterFrame > .Alert .ActionAlert::before { background: var(--od-1); width: 4px; }
+html .OuterFrame > .Alert .AlertButton { border-radius: 0 !important; clip-path: var(--od-chamfer-sm); }
+
+/* ===== Boot overlay (js/main.js) ======================================= */
+html .od-boot {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: var(--od-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 12vw;
+    font-family: var(--mr-font-mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--od-2);
+    pointer-events: none;
+    animation: od-boot-out 500ms steps(6) forwards;
+    animation-delay: var(--od-boot-hold, 1600ms);
+}
+html .od-boot .od-boot-title {
+    font-family: var(--mr-font-display);
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--od-1);
+    text-shadow: var(--od-text-neon);
+    margin-bottom: 24px;
+    animation: od-glitch-idle 700ms steps(1) infinite;
+}
+html .od-boot div.od-line {
+    opacity: 0;
+    animation: mr-fade-in 200ms steps(2) forwards;
+}
+html .od-boot div.od-line b { color: var(--mr-ok); font-weight: 400; }
+html .od-boot .od-bar {
+    margin-top: 18px;
+    height: 4px;
+    width: 0;
+    max-width: 420px;
+    background: repeating-linear-gradient(90deg, var(--od-1) 0 6px, transparent 6px 8px);
+    animation: od-bar-fill 1300ms steps(14) forwards;
+}
+@keyframes od-bar-fill { to { width: 420px; } }
+@keyframes od-boot-out {
+    0%   { opacity: 1; clip-path: inset(0 0 0 0); }
+    50%  { opacity: 1; clip-path: inset(40% 0 40% 0); }
+    100% { opacity: 0; clip-path: inset(50% 0 50% 0); visibility: hidden; }
+}
+
+@media (max-width: 1800px) { html .od-hud i { display: none; } }
+@media (max-width: 1500px) { html .od-hud { display: none; } }
+
+/* Selected row text must stay ink on the yellow slab, hovered or not */
+html body .ReactVirtualized__List .Container.Selected.Selected:has(> .GameListEntryContainer) .GameListEntryContainer > span,
+html body .ReactVirtualized__List .Container.Selected.Selected:has(> .GameListEntryContainer):hover .GameListEntryContainer > span {
+    color: var(--od-ink) !important;
+    text-shadow: none !important;
+}

@@ -1,0 +1,8 @@
+/* OVERDRIVE signal: Custom — the colors on the Colors page */
+:root {
+    --od-p-1: var(--od-user-1);
+    --od-p-2: var(--od-user-2);
+    --od-p-3: var(--od-user-3);
+    --od-p-bg: var(--od-user-bg);
+    --od-p-ink: var(--od-user-bg);
+}
