@@ -61,6 +61,17 @@ animation the theme adds.
 - Steam updates sometimes rename the client's internal classes. If something looks off after a
   Steam update, please open an issue.
 
+## Changelog
+
+### 1.1.0
+- **Friends list:** Steam's gray bars and gradients are gone from the Friends tab, the list, the Group Chats header and the footer. Section bars now get the yellow HUD treatment. Offline friends are dimmed but readable, and the quick-access drop zone is restyled.
+- **Community:** Overdrive styling for hub and community-home cards, discussions (unread topics are marked cyan), the activity feed, the Market, Inventory, the Friends page, Badges, Workshop and group pages, page footers, and online/in-game avatar rings.
+- **Store:** the new store header and search suggestions, the featured carousel, DLC rows, the queue panel, search filters, the account page, and section headings.
+- **Client:** Downloads page sections, the Collections grid, review highlights, the scroll-to-top button, focused rows in Settings, and the Notifications header button.
+
+### 1.0.0
+- First release.
+
 ## License
 
 [MIT](LICENSE)

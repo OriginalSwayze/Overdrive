@@ -139,3 +139,10 @@ html .contextMenu .contextMenuContents .contextMenuItem.ContextMenuAction:is(.Pl
 html .contextMenu .contextMenuContents hr.Separator,
 html .contextMenu hr { background: repeating-linear-gradient(90deg, var(--mr-line-2) 0 4px, transparent 4px 8px) !important; }
 html .NotificationsMenu .NotificationMenuItem { border-radius: 0 !important; }
+html .NotificationsMenu .NotificationHeader > button {
+    background: var(--od-2-10) !important;
+    color: var(--od-2) !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 1px var(--od-2-40) !important;
+}
+html .NotificationsMenu .NotificationHeader > button:hover { background: var(--od-2) !important; color: var(--od-ink) !important; }

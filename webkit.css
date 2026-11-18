@@ -431,3 +431,319 @@ form:has(input[name="term"][role="combobox"]) button[type="submit"] { border-rad
 }
 .profile_rightcol { border-radius: 0 !important; clip-path: var(--od-chamfer); }
 input[type="text"], input[type="search"], textarea, select { border-radius: 0 !important; }
+
+/* =====================================================================
+   OVERDRIVE web audit pass: every Valve-blue surface still found on
+   Store and Community pages (audited 2026-11-18).
+   ===================================================================== */
+
+/* ---------- Shared: footer, page headers, legacy rules -------------- */
+footer#footer,
+#footer.compact {
+    background: rgba(0, 0, 0, 0.55) !important;
+    border-top: 1px solid var(--mr-line-2) !important;
+}
+.page_header_ctn,
+.page_header_ctn.search,
+.apphub_background,
+.friends_header_bg,
+#BG_top_workshop,
+.market_header_bg,
+.home_page_body_ctn.has_takeover .static_takeover_ctn,
+.page_top_area .game,
+.page_content_ctn .page_top_area > div.game {
+    background-image: none !important;
+    background-color: transparent !important;
+}
+h2.gradientbg,
+.block .block_header > h2,
+.leftcol h2,
+.rightcol h2 {
+    background-image: none !important;
+    border-bottom: 1px solid var(--od-1-40) !important;
+    color: var(--mr-fg) !important;
+}
+
+/* Avatars: online = cyan, in-game = green, offline = steel */
+.playerAvatar.online,
+.avatar_block .avatar,
+div.playerAvatar.online,
+.friend_block_v2.online .player_avatar { background: var(--od-2) !important; }
+.playerAvatar.in-game,
+.friend_block_v2.in-game .player_avatar { background: var(--mr-ok) !important; }
+.playerAvatar.offline { background: var(--mr-fg-4) !important; }
+
+/* Generic legacy buttons */
+.btnv6_grey_black,
+.btn_grey_black,
+.btn_small_thin,
+.btn_small > span,
+.btn_uppercase > span,
+.game_button > span,
+#market_search_advanced_show > div {
+    background: var(--od-2-10) !important;
+    color: var(--od-2) !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 1px var(--od-2-40) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.btnv6_grey_black:hover, .btn_grey_black:hover, .game_button:hover > span,
+#market_search_advanced_show:hover > div, .btn_small:hover > span {
+    background: var(--od-2) !important;
+    color: var(--od-ink) !important;
+}
+
+/* ---------- Store ---------------------------------------------------- */
+/* Header: the outer panel that wraps the navigation */
+.Panel.Focusable:has(> [role="navigation"] input[name="term"]) {
+    background: var(--mr-glass-strong) !important;
+    -webkit-backdrop-filter: var(--mr-glass-filter);
+    backdrop-filter: var(--mr-glass-filter);
+    box-shadow: inset 0 -1px 0 var(--od-1-40) !important;
+}
+[role="navigation"]:has(input[name="term"]) { background: transparent !important; box-shadow: none !important; }
+[id^="searchSuggestions"] {
+    background: var(--od-panel) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2), var(--mr-shadow-3) !important;
+    border-radius: 0 !important;
+}
+.carousel__slider,
+.carousel .SliderBody > div {
+    background-image: none !important;
+    background-color: rgba(0, 0, 0, 0.35) !important;
+}
+.home_gift_card_link {
+    background: var(--od-1) !important;
+    color: var(--od-ink) !important;
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer-sm);
+}
+.main_content_ctn .v2 > div[style*="cal_bg"],
+.home_cluster_ctn.v2 > div { background-image: none !important; }
+
+/* Game page */
+.queue_and_playtime > div,
+.queue_ctn,
+#queueActionsCtn {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line) !important;
+}
+.game_area_dlc_row,
+.game_area_dlc_row.odd,
+.game_area_dlc_row.even {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-bottom: 1px solid var(--mr-line);
+}
+.game_area_dlc_row:hover { background: var(--od-2-10) !important; }
+.block.responsive_apppage_details_right,
+.block.responsive_apppage_reviewblock,
+#game_area_reviews,
+.review_box,
+#review_create {
+    background: rgba(0, 0, 0, 0.35) !important;
+    border-radius: 0 !important;
+}
+
+/* Search filters */
+#client_filter .block_content > div.checked,
+.block_content_inner > div.checked,
+.tab_filter_control_row.checked,
+.tab_filter_control.checked {
+    background: var(--od-1-20) !important;
+    color: var(--od-1) !important;
+    box-shadow: inset 3px 0 0 var(--od-1) !important;
+}
+.search_result_row.ds_collapse_flag:hover,
+.search_result_row:hover { background: var(--od-2-10) !important; }
+
+/* Account page */
+.account_header_line,
+.nav_item.active,
+.two_column.left .nav_item:hover {
+    background: var(--od-1-10) !important;
+    box-shadow: inset 3px 0 0 var(--od-1) !important;
+}
+
+/* ---------- Community: hubs and the community home ------------------- */
+.apphub_HomeHeader > div,
+.apphub_HomeHeaderContent { background-image: none !important; }
+.apphub_background .left > div,
+.apphub_background .right > div,
+.apphub_sectionTab,
+.apphub_sectionTabs a {
+    background: var(--od-2-10) !important;
+    border-radius: 0 !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+}
+.apphub_sectionTab.active,
+.apphub_sectionTabs a.active { background: var(--od-1) !important; color: var(--od-ink) !important; }
+.apphub_Card {
+    background: var(--od-panel) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+    clip-path: var(--od-chamfer-sm);
+}
+.apphub_Card:hover { box-shadow: inset 0 0 0 1px var(--od-2), 0 0 20px var(--od-2-20) !important; }
+.apphub_Card > div:not(.apphub_CardBG):not([class*="Image"]):not([class*="image"]),
+.apphub_CardContentAuthorBlock {
+    background-color: rgba(0, 0, 0, 0.45) !important;
+}
+.apphub_Card .gradient,
+.apphub_Card > .gradient {
+    background: linear-gradient(transparent 5%, var(--od-panel) 95%) !important;
+}
+.apphub_CardBG.workshop,
+.apphub_Card.Announcement_Card > div[style*="background"],
+.apphub_Card.Announcement_Card > div:first-child { background-image: none !important; }
+
+/* Discussions */
+.forum_topic {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-radius: 0 !important;
+    border-left: 2px solid transparent;
+    transition: background-color var(--mr-t-1), border-color var(--mr-t-1);
+}
+.forum_topic.unread {
+    background: var(--od-2-10) !important;
+    border-left-color: var(--od-2);
+}
+.forum_topic:hover { background: var(--od-1-10) !important; border-left-color: var(--od-1); }
+.forum_paging,
+.forum_paging_header,
+.forum_topic_container,
+.forum_op,
+.commentthread_comment,
+.commentthread_area { background: transparent !important; }
+.forum_op,
+.commentthread_comment {
+    border-bottom: 1px solid var(--mr-line);
+}
+
+/* Activity feed */
+.blotter_block,
+.blotter_day,
+.blotter_userstatus,
+.blotter_group_announcement {
+    background: rgba(0, 0, 0, 0.35) !important;
+    border-radius: 0 !important;
+}
+.blotter_userstatus .collapsed > div,
+.blotter_group_announcement .collapsed > div {
+    background: linear-gradient(transparent 0%, var(--od-panel) 80%) !important;
+}
+.blotter_appselect {
+    background: var(--od-2-10) !important;
+    box-shadow: inset 0 0 0 1px var(--od-2-40) !important;
+    border-radius: 0 !important;
+}
+
+/* Market */
+#BG_top .user_info,
+.market_listing_row,
+.market_home_listing_table,
+#myListings,
+.market_search_sidebar_contents,
+.market_search_box_container {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 0 !important;
+}
+.market_listing_row:hover { background: var(--od-2-10) !important; }
+.market_header_logo { filter: grayscale(1) brightness(1.2); }
+
+/* Inventory */
+#tabcontent_inventory,
+.inventory_page_right,
+.inventory_iteminfo,
+.view_inventory_page,
+#active_inventory_page,
+.inventory_page_left,
+#mainContents .tabitems_ctn,
+.games_list_tabs_ctn,
+.pagecontent.no_header > .profile_small_header_bg {
+    background: rgba(0, 0, 0, 0.4) !important;
+    background-image: none !important;
+    border-radius: 0 !important;
+}
+#iteminfo0 > div, #iteminfo1 > div {
+    background-image: none !important;
+    background-color: rgba(0, 0, 0, 0.45) !important;
+}
+.games_list_tab {
+    background: var(--od-2-10) !important;
+    border-radius: 0 !important;
+}
+.games_list_tab.active { background: var(--od-1) !important; }
+.games_list_tab.active * { color: var(--od-ink) !important; }
+.itemHolder { background: rgba(255, 255, 255, 0.04) !important; border-radius: 0 !important; }
+.itemHolder:hover { box-shadow: inset 0 0 0 1px var(--od-2) !important; }
+
+/* Friends page */
+.profile_friends.title_bar,
+.title_bar {
+    background: var(--od-1-10) !important;
+    box-shadow: inset 3px 0 0 var(--od-1), inset 0 -1px 0 var(--od-1-40) !important;
+    border-radius: 0 !important;
+}
+.friend_block_v2 {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-radius: 0 !important;
+    transition: background-color var(--mr-t-1);
+}
+.friend_block_v2:hover { background: var(--od-2-10) !important; }
+.search_your_friends,
+#search_text_box { background-color: rgba(0, 0, 0, 0.5) !important; border-radius: 0 !important; }
+
+/* Badges */
+.badge_row,
+.badge_row_inner {
+    background: rgba(0, 0, 0, 0.4) !important;
+    border-radius: 0 !important;
+}
+.badge_row.is_link:hover .badge_row_inner { background: var(--od-2-10) !important; }
+.badge_row { box-shadow: inset 0 0 0 1px var(--mr-line) !important; margin-bottom: 8px; }
+
+/* Workshop and groups */
+.browseApps,
+.panel_margin_none,
+.primary_panel,
+.announcement.detailBox,
+.detailBox,
+.group_summary,
+.rightbox {
+    background: rgba(0, 0, 0, 0.4) !important;
+    background-image: none !important;
+    border-radius: 0 !important;
+}
+.workshopAppsSort .browseOption > div,
+.browseOption.selected > div {
+    background-image: none !important;
+}
+.browseOption.selected { box-shadow: inset 3px 0 0 var(--od-1) !important; background: var(--od-1-10) !important; }
+
+/* Audit pass 2: smaller leftovers */
+.discussionSearchTextContainer,
+.searchApps,
+.rightbox_list_selection_background {
+    background-image: none !important;
+}
+.discussionSearchTextContainer,
+.searchApps { background-color: rgba(0, 0, 0, 0.5) !important; box-shadow: inset 0 0 0 1px var(--mr-line-2); }
+.rightbox_list_selection_background { background: var(--od-1-10) !important; box-shadow: inset 3px 0 0 var(--od-1); }
+.blotter_userstatus .collapsed > div,
+.blotter_group_announcement .collapsed > div { background-image: linear-gradient(transparent, var(--od-panel)) !important; }
+.profile_small_header_bg,
+.profile_xp_block {
+    background: rgba(0, 0, 0, 0.45) !important;
+    box-shadow: inset 0 -1px 0 var(--od-1-40) !important;
+}
+html body #iteminfo0 > div[class],
+html body #iteminfo1 > div[class] {
+    background-image: none !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+html body #active_inventory_page #iteminfo0 > div[class],
+html body #active_inventory_page #iteminfo1 > div[class] {
+    background-image: none !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}

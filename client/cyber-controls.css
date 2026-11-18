@@ -86,3 +86,12 @@ html .PagedSettingsDialog_PageList .PagedSettingsDialog_PageListItem.Active::bef
 html .PagedSettingsDialog .SettingsDialogSubHeader { color: var(--od-2) !important; font-family: var(--mr-font-mono); }
 html .PagedSettingsDialog :is(.Field, .FakeContainer, .InfoRow) { border-radius: 0 !important; }
 html .PagedSettingsDialog .Field:hover { background: var(--od-2-10) !important; }
+
+/* Settings rows when focused / hovered */
+html .PagedSettingsDialog .Field.HighlightOnFocus:focus-within,
+html .PagedSettingsDialog .Field.HighlightOnFocus.gpfocuswithin,
+html .DialogBody .Field.HighlightOnFocus {
+    background: transparent !important;
+}
+html .DialogBody .Field.HighlightOnFocus:hover,
+html .DialogBody .Field.HighlightOnFocus:focus-within { background: var(--od-2-10) !important; }

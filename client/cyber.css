@@ -571,3 +571,32 @@ html body .ReactVirtualized__List .Container.Selected.Selected:has(> .GameListEn
     color: var(--od-ink) !important;
     text-shadow: none !important;
 }
+
+/* ===== Audit pass (2026-11-18): client leftovers ===== */
+html .DownloadsPage .Section,
+html .DownloadsPage .TopSection > .Section {
+    background: rgba(0, 0, 0, 0.35) !important;
+    box-shadow: inset 0 0 0 1px var(--mr-line) !important;
+}
+html .DownloadsPage .Section.Active { box-shadow: inset 3px 0 0 var(--od-1), inset 0 0 0 1px var(--mr-line) !important; }
+html .AppDetailsMain .Highlight.ReviewMetadata,
+html .AppDetailsMain .Highlight {
+    background: var(--od-2-10) !important;
+    box-shadow: inset 2px 0 0 var(--od-2) !important;
+}
+html .ScrollToTopButton > div {
+    background: var(--od-1) !important;
+    color: var(--od-ink) !important;
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer-sm);
+    font-family: var(--mr-font-display);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+html .CSSGrid .Collection {
+    background-color: var(--od-panel) !important;
+    border-radius: 0 !important;
+    clip-path: var(--od-chamfer-sm);
+    box-shadow: inset 0 0 0 1px var(--mr-line-2) !important;
+}
+html .CSSGrid .Collection:hover { box-shadow: inset 0 0 0 1px var(--od-1), 0 0 18px var(--od-1-20) !important; }
