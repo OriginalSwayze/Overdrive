@@ -23,6 +23,10 @@ reads like a data feed, and the Play button glitches when you reach for it.
 
 ![Game page](media/gamepage.gif)
 
+## Boot sequence
+
+![Boot sequence](media/boot.gif)
+
 ## Signals: five palettes plus your own
 
 ![Palettes](media/signals.gif)
