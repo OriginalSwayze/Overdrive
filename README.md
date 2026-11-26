@@ -48,10 +48,10 @@ animation the theme adds.
 
 ## Install
 
-1. Install [Millennium](https://steambrew.app).
-2. Install Overdrive from the [theme gallery](https://steambrew.app/themes), or clone this repo into
-   `Steam/millennium/themes/Overdrive`.
-3. In Steam, open **Millennium → Themes** and select **Overdrive**.
+- **With [Beyond Steam](https://github.com/OriginalSwayze/Beyond-Steam) (easiest):** in Steam press **Ctrl+Shift+B**, open
+  **Get more** and install **Overdrive**.
+- **By hand:** download **Overdrive.zip** from the [latest release](https://github.com/OriginalSwayze/Overdrive/releases/latest) and unzip
+  it into `%APPDATA%\Beyond Steam\themes\Overdrive` (Beyond Steam) or `Steam\millennium\themes\Overdrive` (Millennium).
 
 ## Notes
 
